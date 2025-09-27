@@ -17,7 +17,9 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_header("Content-type", "text/html")  # Отправка типа данных, который будет передаваться
         self.end_headers()  # Завершение формирования заголовков ответа
         with open("contacts.html", encoding="utf-8") as f:
-            self.wfile.write(bytes(f"{f}", "utf-8"))  # Тело ответа
+            result = f.read()
+
+        self.wfile.write(result.encode("utf-8"))  # Тело ответа
 
 
 if __name__ == "__main__":
