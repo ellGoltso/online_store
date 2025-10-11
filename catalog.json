@@ -1,0 +1,57 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "name": "Смартфон",
+        "description": "-----"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "name": "Комплектующие для ПК",
+        "description": "содержит запчасти для пк"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "samsung",
+        "description": "galaxy super",
+        "image": "",
+        "category": 1,
+        "price": 90000,
+        "created_at": "2025-10-06",
+        "updated_at": "2025-10-06"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "nokia",
+        "description": "5370",
+        "image": "",
+        "category": 1,
+        "price": 1000,
+        "created_at": "2025-10-06",
+        "updated_at": "2025-10-06"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "name": "i3-10400f",
+        "description": "процессор intel",
+        "image": "",
+        "category": 2,
+        "price": 7000,
+        "created_at": "2025-10-06",
+        "updated_at": "2025-10-06"
+    }
+}
+]
