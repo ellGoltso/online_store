@@ -1,3 +1,7 @@
 from django.contrib import admin
+from blog.models import BlogPost
 
-# Register your models here.
+@admin.register(BlogPost)
+class BlogPostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date_of_publication')
+    search_fields = ('title', 'date_of_publication')

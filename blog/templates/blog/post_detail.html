@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{post.title}} detail</title>
+</head>
+<body>
+<div class="card mx-auto" style="width: 24rem;">
+    <img src="{% if post.preview %}{{ post.preview.url }}{% else %}{% endif %}" alt="{{ post.title }}"
+         class="card-img-top">
+    <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Кол-во просмотров: {{post.number_of_views}}</li>
+        <li class="list-group-item">Дата создания: {{post.date_of_publication|date:"d M Y"}}</li>
+        <li class="list-group-item">Признак публикации: {{post.publication_sign}}</li>
+        <li class="list-group-item">{{post.content}}</li>
+    </ul>
+</div>
+</body>
+</html>
