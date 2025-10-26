@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Отменить публикацию</h1>
+    <p>Вы уверены, что хотите отменить публикацию "{{product.name}}"?</p>
+    <form action="{% url 'catalog:product_unpublish' product.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-secondary">Отменить публикацию</button>
+    </form>
+</div>
+{% endblock %}
