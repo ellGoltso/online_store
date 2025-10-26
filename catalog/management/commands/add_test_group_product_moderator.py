@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from catalog.models import Product, Category
+from django.contrib.auth.models import Group
 
 
 class Command(BaseCommand):
@@ -14,5 +15,5 @@ class Command(BaseCommand):
         )
         category = Category.objects.get(name="test_category")
         Product.objects.create(
-            name="test_product", description="test_desc", price=25000, category=category
+            name="test_product", description="tedt_desc", price=25000, category=category
         )
