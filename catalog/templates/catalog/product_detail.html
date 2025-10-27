@@ -2,17 +2,29 @@
 
 {% block content %}
 <div class="card mx-auto" style="width: 24rem;">
-  <img src="{% if product.image %}{{ product.image.url }}{% else %}{% endif %}" alt="{{ product.category }}" class="card-img-top">
-  <div class="card-body">
-    <h5 class="card-title">Детали продукта</h5>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Название: {{product.name}}</li>
-    <li class="list-group-item">Описание: {{product.description}}</li>
-    <li class="list-group-item">Категория: {{product.category}}</li>
-    <li class="list-group-item">Цена: {{product.price}}</li>
-    <li class="list-group-item">Дата создания: {{product.created_at|date:"d M Y"}}</li>
-    <li class="list-group-item">Дата последнего изменения: {{product.updated_at|date:"d M Y"}}</li>
-  </ul>
+    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% endif %}" alt="{{ product.category }}"
+         class="card-img-top">
+    <div class="card-body">
+        <h5 class="card-title">Детали продукта</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Название: {{product.name}}</li>
+        <li class="list-group-item">Описание: {{product.description}}</li>
+        <li class="list-group-item">Категория: {{product.category}}</li>
+        <li class="list-group-item">Цена: {{product.price}}</li>
+        <li class="list-group-item">Дата создания: {{product.created_at|date:"d M Y"}}</li>
+        <li class="list-group-item">Дата последнего изменения: {{product.updated_at|date:"d M Y"}}</li>
+        <li class="list-group-item">Статус публикации: {{product.publication_status}}</li>
+        <li class="list-group-item">Владелец: {{product.owner.username}}</li>
+        {% if 'catalog.can_unpublish_product' in perms %}
+        <li class="list-group-item">
+            <form method="post" action="{% url 'catalog:product_unpublish' product.pk %}">
+                {% csrf_token %}
+                <button class="btn btn-secondary" type="submit">Отменить публикацию</button>
+            </form>
+        </li>
+        {% endif %}
+
+    </ul>
 </div>
 {% endblock %}

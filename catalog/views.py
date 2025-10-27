@@ -26,7 +26,7 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("catalog:product_list")
 
 
-class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
     permission_required = 'catalog.delete_product'
     model = Product
     template_name = "catalog/product_confirm_delete.html"
@@ -52,8 +52,8 @@ class ProductDetailView(LoginRequiredMixin, DetailView):
 
 
 class UnpublishProductView(LoginRequiredMixin, View):
-    def post(self, request, product_id):
-        product = get_object_or_404(Product, id=product_id)
+    def post(self, request, pk):
+        product = get_object_or_404(Product, pk=pk)
 
         if not request.user.has_perm('catalog.can_unpublish_product'):
             return HttpResponseForbidden("У вас нет прав для отмены публикации продукта.")

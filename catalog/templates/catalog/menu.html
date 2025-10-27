@@ -17,6 +17,7 @@
 
         <ul class="dropdown-menu">
             {% if user.is_authenticated %}
+            <li class="text-center">{{ user.username }}</li>
             <li>
                 <form method="post" action="{% url 'users:logout' %}">
                     {% csrf_token %}
