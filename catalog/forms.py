@@ -6,7 +6,7 @@ import json
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ["name", "description", "image", "category", "price"]
+        fields = ["name", "description", "image", "category", "price", "publication_status"]
 
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
@@ -21,6 +21,7 @@ class ProductForm(forms.ModelForm):
         self.fields["image"].widget.attrs.update({"class": "form-control"})
         self.fields["category"].widget.attrs.update({"class": "form-control"})
         self.fields["price"].widget.attrs.update({"class": "form-control"})
+
 
     def clean_price(self):
         price = self.cleaned_data.get("price")

@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import CustomUser
 
 
 class Category(models.Model):
@@ -38,6 +39,13 @@ class Product(models.Model):
         verbose_name="Дата последнего изменения", auto_now=True
     )
     publication_status = models.BooleanField(verbose_name="Статус публикации", default=False)
+    owner = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        verbose_name="Владелец",
+        related_name="products",
+        default=None,
+    )
 
     def __str__(self):
         return self.name
