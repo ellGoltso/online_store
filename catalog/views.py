@@ -25,18 +25,33 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "catalog/product_form.html"
     success_url = reverse_lazy("catalog:product_list")
 
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        user = self.request.user
+        if user.groups.filter(name='Модератор продуктов').exists() or obj.owner == user:
+            return obj
+        else:
+            raise Http404("У Вас нет прав для редактирования данного продукта.")
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
-    permission_required = 'catalog.delete_product'
+    permission_required = ('catalog.delete_product',)
     model = Product
     template_name = "catalog/product_confirm_delete.html"
     success_url = reverse_lazy("catalog:product_list")
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
-        if not obj.owner == self.request.user:
+        user = self.request.user
+        is_in_group = False
+        for group in user.groups.all():
+            if group.name == 'Модератор продуктов':
+                is_in_group = True
+                break
+        if is_in_group or obj.owner == user:
+            return obj
+        else:
             raise Http404("У Вас нет прав для удаления данного продукта.")
-        return obj
+
 
 
 class ProductListView(ListView):

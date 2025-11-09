@@ -15,6 +15,11 @@ class Command(BaseCommand):
             username="test_user_5",
             password='12345678gf'
         )
+        user1, created = CustomUser.objects.get_or_create(
+            email="test_user_7@mail.ru",
+            username="test_user_7",
+            password='12345678'
+        )
         Category.objects.all().delete()
         Product.objects.all().delete()
         Category.objects.create(
