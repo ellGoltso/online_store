@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Категории</h1>
+<div class="row row-cols-1 row-cols-md-4 d-flex justify-content-center mt-5">
+    {% for category in categories %}
+        <div class=" card text-center px-0 mx-2 mb-2">
+            <div class="card-header">
+                <h5>{{ category.name }}</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ category.description|truncatechars:100 }}</p>
+                <a href="{% url 'catalog:products_of_category' category.pk %}" class="btn btn-primary">Смотреть товары</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
